@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hackaton</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div class="result">
+      <template>
+        {% for woman in womans %}
+
+        <h2>{{ woman.name }}</h2>
+        <img src="https://fdnd.directus.app/assets/{{woman.image}}" />
+
+        {% endfor %}
+      </template>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/liquidjs/dist/liquid.browser.min.js"></script>
+    <script type="module" src="./js/api.js"></script>
+  </body>
+</html>
