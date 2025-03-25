@@ -5,19 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hackaton</title>
     <link rel="stylesheet" href="./css/styles.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/images/android-chrome-512x512.png"
+    />
   </head>
   <body>
-    <div class="result">
-      <template>
-        {% for woman in womans %}
+    <h1>Web Warriors</h1>
+    <div id="marioKart">
+      <section class="characterSelector">
+        <template>
+          <ul>
+            {% for woman in womans %}
+            <li>
+              <label for="{{woman.id}}">
+                <input
+                  type="radio"
+                  id="{{woman.id}}"
+                  name="fav_language"
+                  value="{{woman.id}}"
+                />
+                <img
+                  src="https://fdnd.directus.app/assets/{{woman.image}}"
+                  alt="{{woman.name}}"
+                />
+              </label>
+            </li>
+            {% endfor %}
+          </ul>
+        </template>
+      </section>
 
-        <h2>{{ woman.name }}</h2>
-        <img src="https://fdnd.directus.app/assets/{{woman.image}}" />
+      <section class="character">
+        <div class="characterCard">
+          <div id="selectedIdDisplay"></div>
+        </div>
+      </section>
 
-        {% endfor %}
-      </template>
+      <section id="tagline">
+        <div id="taglineDisplay">
+          <h3 id="blinking">Choose your character</h3>
+        </div>
+      </section>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/liquidjs/dist/liquid.browser.min.js"></script>
+
     <script type="module" src="./js/api.js"></script>
+    <script type="module" src="./js/country.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/liquidjs/dist/liquid.browser.min.js"></script>
   </body>
 </html>

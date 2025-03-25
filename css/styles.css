@@ -1,5 +1,20 @@
+@font-face {
+  font-family: MarioKart;
+  src: url(/fonts/mario_kart_f2.ttf);
+}
+
+@font-face {
+  font-family: Millimeter;
+  src: url(/fonts/Millimetre-Regular.otf);
+}
+
 html {
-  --main-background: lightblue;
+  --main-background: linear-gradient(
+    25deg,
+    rgba(16, 94, 120, 1) 0%,
+    rgba(144, 210, 232, 1) 50%,
+    rgba(173, 216, 230, 1) 100%
+  );
 
   --spacing-xxs: 0.25rem; /* 4px */
   --spacing-xs: 0.5rem; /* 8px */
@@ -12,7 +27,231 @@ html {
   --spacing-4xl: 6rem; /* 96px */
 }
 
-img {
-  width: 100px;
-  height: 100px;
+* {
+  margin: 0;
+  padding: 0;
+  border: box;
+}
+
+/* ---------------------------------------------------------------------------------------- */
+/* --------------------------------- Character Selection ---------------------------------- */
+/* ---------------------------------------------------------------------------------------- */
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-image: var(--main-background);
+}
+
+h1 {
+  width: 100vw;
+
+  font-family: marioKart;
+  color: white;
+  font-size: 4em;
+  text-align: center;
+}
+
+#marioKart {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 3fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.characterSelector {
+  width: 100vw;
+  background-color: rgb(173, 216, 230, 0.2);
+  order: 2;
+  margin: 0 0 2.5vw 0vw;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); */
+  }
+}
+
+label {
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  filter: saturate(0);
+  display: block;
+  height: 100%;
+  width: 100%;
+
+  &:hover {
+    animation: --hover-animation 1s linear infinite;
+    filter: saturate(1);
+  }
+
+  &:has(:checked) {
+    filter: saturate(1);
+    transform: scale(1.2);
+  }
+}
+
+input {
+  opacity: 0;
+  position: absolute;
+}
+
+ul {
+  list-style: none;
+
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  gap: var(--spacing-xxs);
+}
+
+/* animation for small cards left */
+ul > * {
+  animation: --fade-in 0.3s ease-out forwards;
+  animation-delay: calc(sibling-index() * 30ms);
+  opacity: 0;
+}
+
+@keyframes --fade-in {
+  0% {
+    opacity: 0;
+    translate: -0.5rem 0;
+  }
+  100% {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes --hover-animation {
+  0%,
+  100% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+}
+/* ---------------------------------------------------------------------------------------- */
+/* ---------------------------------- Character Showcase ---------------------------------- */
+/* ---------------------------------------------------------------------------------------- */
+
+.character {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  align-content: center;
+}
+
+#selectedIdDisplay {
+  order: 1;
+  height: 40vh;
+  width: 30%;
+
+  & img {
+    width: 100%;
+    object-fit: cover;
+  }
+
+  & img:nth-of-type(2) {
+    height: 40%;
+    object-fit: contain;
+  }
+}
+
+/* ---------------------------------------------------------------------------------------- */
+/* --------------------------------------- Tagline ---------=------------------------------ */
+/* ---------------------------------------------------------------------------------------- */
+
+#tagline {
+  grid-column-start: 1;
+  grid-column-end: -1;
+  order: 2;
+}
+
+#taglineDisplay {
+  background-image: linear-gradient(
+    90deg,
+    rgba(140, 140, 143, 0) 0%,
+    rgba(140, 140, 143, 0.6) 20%,
+    rgba(140, 140, 143, 0.6) 80%,
+    rgba(140, 140, 143, 0) 100%
+  );
+  padding: 0.3em 2em 0.3em 2em;
+  margin-bottom: 1em;
+
+  border-radius: 8px;
+  border-width: 10px;
+  border-color: rgb(173, 216, 230, 0.1);
+  border-style: double;
+}
+
+h3 {
+  font-family: Millimeter;
+  text-align: center;
+  font-size: 1em;
+  color: white;
+}
+
+#blinking {
+  animation: --blinking 2s infinite;
+  animation-delay: 2s;
+  opacity: 0;
+}
+
+@keyframes --blinking {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ---------------------------------------------------------------------------------------- */
+/* -------------------------------------- Media Query ------------------------------------- */
+/* ---------------------------------------------------------------------------------------- */
+
+@media (min-width: 600px) {
+  #marioKart {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    justify-items: center;
+    gap: var(--spacing-md);
+    width: 100vw;
+    height: 80vh;
+  }
+
+  .characterSelector {
+    width: 40vw;
+    margin: 0 0 0 5vw;
+    padding: var(--spacing-md);
+    border-radius: 8px;
+    border-width: 15px;
+    border-color: rgb(173, 216, 230, 0.2);
+    border-style: double;
+    order: 0;
+  }
+
+  ul {
+    gap: var(--spacing-md);
+  }
+
+  .character {
+    width: 50vw;
+  }
+
+  #taglineDisplay {
+    padding: 0.3em 5em 0.3em 5em;
+  }
+
+  h3 {
+    font-size: 1.5em;
+  }
 }
