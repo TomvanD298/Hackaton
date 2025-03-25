@@ -33,10 +33,12 @@ function displaySelectedWoman(woman) {
     const flag = `https://countryflagsapi.netlify.app/flag/${woman.country_code}.svg`
 
   selectedIdDisplay.innerHTML = `
-    <h2>${woman.name}</h2>
-    <img src="https://fdnd.directus.app/assets/${woman.image}" alt="${woman.name}" />
-    <p>${woman.period}</p>
-    <img src="${flag}" alt="Flag of ${woman.country}" />
+    <div>
+     <h2>${woman.name}</h2>
+     <img src="https://fdnd.directus.app/assets/${woman.image}" alt="${woman.name}" />
+     <p>${woman.period}</p>
+     <img src="${flag}" alt="Flag of ${woman.country}" />
+    </div>
 
   `;
 }

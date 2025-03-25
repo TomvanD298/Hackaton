@@ -1,21 +1,14 @@
 @font-face {
   font-family: MarioKart;
-  src: url(/fonts/mario_kart_f2.ttf);
+  src: url(../fonts/mario_kart_f2.ttf);
 }
 
 @font-face {
   font-family: Millimeter;
-  src: url(/fonts/Millimetre-Regular.otf);
+  src: url(../fonts/Millimetre-Regular.otf);
 }
 
 html {
-  --main-background: linear-gradient(
-    25deg,
-    rgba(16, 94, 120, 1) 0%,
-    rgba(144, 210, 232, 1) 50%,
-    rgba(173, 216, 230, 1) 100%
-  );
-
   --spacing-xxs: 0.25rem; /* 4px */
   --spacing-xs: 0.5rem; /* 8px */
   --spacing-sm: 0.75rem; /* 12px */
@@ -40,15 +33,13 @@ html {
 body {
   width: 100vw;
   height: 100vh;
-  background-image: var(--main-background);
 }
 
 h1 {
   width: 100vw;
-
   font-family: marioKart;
   color: white;
-  font-size: 4em;
+  font-size: clamp(2em, 5vw, 4em);
   text-align: center;
 }
 
@@ -65,7 +56,7 @@ h1 {
 
 .characterSelector {
   width: 100vw;
-  background-color: rgb(173, 216, 230, 0.2);
+  background-color: rgba(255, 255, 255, 0.3);
   order: 2;
   margin: 0 0 2.5vw 0vw;
 
@@ -73,6 +64,7 @@ h1 {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 8px;
     /* clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); */
   }
 }
@@ -80,18 +72,15 @@ h1 {
 label {
   cursor: pointer;
   transition: transform 0.3s ease, background-color 0.3s ease;
-  filter: saturate(0);
   display: block;
   height: 100%;
   width: 100%;
 
   &:hover {
     animation: --hover-animation 1s linear infinite;
-    filter: saturate(1);
   }
 
   &:has(:checked) {
-    filter: saturate(1);
     transform: scale(1.2);
   }
 }
@@ -137,6 +126,104 @@ ul > * {
     transform: scale(1);
   }
 }
+
+/* ---------------------------------------------------------------------------------------- */
+/* -------------------------------------- Background -------------------------------------- */
+/* ---------------------------------------------------------------------------------------- */
+
+#bg-gradient-logo {
+  width: 200vw;
+  height: 200vh;
+  background-image: url("https://media-hosting.imagekit.io//9978d41543ca4d89/shard_logo.png?Expires=1837516906&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=LWThJiQ2gK7IG7GeS~XzFPJOB8djoGsI9RcdFMmC-HZ0I8apH0yppaJIfMaQydiCisqDFlxDb6--TZiXE8h4Wwoe3VEICL0uEB-l7nBliLbMqZHwwNKq6K8VGcWksRy1jhiJCBTPk69mkCSbUlS1tq~XwU6AgJK8K3UtswdK-KpgMlvxYrxw5Mcy2HunpOQmQbpwAMc~gL0ySZNauZl-LFAwrqDlHQc1lGgK5EoJ-OZWpdfuJnisUJ7CPcNfN6~-LGEjju6r2E0VOiUwnk2C-ejrZ8jCPMIUavM1gWV86X-Mu9RRQwVIzwHrKupSSJeAItG9US02h1I49F65RWs9uA__");
+  background-position: var(--bg_rails_position) var(--bg_y_rails_position);
+  /*   scale: 2; */
+  animation: --animate_bg_position 120000s infinite linear;
+  transform: rotateX(41deg) perspective(430px) rotateY(6deg) rotateX(15deg);
+  position: fixed;
+  top: -60%;
+  left: -30%;
+  z-index: -1;
+  filter: blur(3px);
+}
+
+#bg-logo {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: -2;
+  animation: --animate_bg_colors 8s infinite ease-in-out;
+  background-image: linear-gradient(
+      190deg,
+      rgba(0, 0, 80, 0.565) 0%,
+      #00000000 35%,
+      #00000000 65%,
+      rgba(0, 0, 80, 0.565) 100%
+    ),
+    linear-gradient(
+      25deg,
+      var(--color1_gradient) 33%,
+      var(--color2_gradient) 66%,
+      var(--color3_gradient) 100%
+    );
+}
+
+@property --bg_rails_position {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 0%;
+}
+
+@property --bg_y_rails_position {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 0%;
+}
+
+@property --color1_gradient {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: lime;
+}
+
+@property --color2_gradient {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: lime;
+}
+
+@property --color3_gradient {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: lime;
+}
+
+@keyframes --animate_bg_position {
+  from {
+    --bg_rails_position: 0%;
+    --bg_y_rails_position: 0%;
+  }
+  to {
+    --bg_rails_position: 100000%;
+    --bg_y_rails_position: 0%;
+  }
+}
+
+@keyframes --animate_bg_colors {
+  0%,
+  100% {
+    --color1_gradient: #63e5ff;
+    --color2_gradient: #8aecff;
+    --color3_gradient: #b1f2ff;
+    /* 		--bg_c1_position: 17; */
+  }
+  50% {
+    --color1_gradient: #b1f2ff;
+    --color2_gradient: #8aecff;
+    --color3_gradient: #63e5ff;
+    /* 		--bg_c1_position: 37; */
+  }
+}
+
 /* ---------------------------------------------------------------------------------------- */
 /* ---------------------------------- Character Showcase ---------------------------------- */
 /* ---------------------------------------------------------------------------------------- */
@@ -146,6 +233,7 @@ ul > * {
   height: 100%;
   display: grid;
   align-content: center;
+  justify-content: center;
 }
 
 #selectedIdDisplay {
@@ -165,7 +253,7 @@ ul > * {
 }
 
 /* ---------------------------------------------------------------------------------------- */
-/* --------------------------------------- Tagline ---------=------------------------------ */
+/* --------------------------------------- Tagline ---------------------------------------- */
 /* ---------------------------------------------------------------------------------------- */
 
 #tagline {
@@ -178,8 +266,8 @@ ul > * {
   background-image: linear-gradient(
     90deg,
     rgba(140, 140, 143, 0) 0%,
-    rgba(140, 140, 143, 0.6) 20%,
-    rgba(140, 140, 143, 0.6) 80%,
+    rgba(100, 100, 100, 0.6) 20%,
+    rgba(100, 100, 100, 0.6) 80%,
     rgba(140, 140, 143, 0) 100%
   );
   padding: 0.3em 2em 0.3em 2em;
@@ -211,6 +299,79 @@ h3 {
   }
   50% {
     opacity: 1;
+  }
+}
+
+/* ---------------------------------------------------------------------------------------- */
+/* --------------------------------------- Plateau ---------------------------------------- */
+/* ---------------------------------------------------------------------------------------- */
+
+.plateau {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  width: 30em;
+  height: 10em;
+
+  border-radius: 50%;
+  background-image: conic-gradient(
+    at 50% -10em,
+    black 120deg,
+    #222 0,
+    #aaa,
+    #222,
+    #666,
+    #777 240deg,
+    black 0
+  );
+
+  & text {
+    font-family: marioKart;
+  }
+}
+
+svg {
+  fill: white;
+}
+
+cirkel {
+  position: absolute;
+  top: -9.5em;
+
+  transform: perspective(60em) rotateX(75deg) rotateZ(var(--angle));
+
+  display: block;
+  width: 24em;
+  height: 24em;
+
+  margin-inline: auto;
+
+  background-image: radial-gradient(
+    circle,
+    rgba(153, 153, 153, 1) 0%,
+    rgb(110, 110, 110) 60%,
+    rgba(34, 34, 34, 1) 100%
+  );
+
+  border: 5px solid white;
+  border-radius: 50%;
+
+  background-color: #333;
+
+  box-shadow: 0 0 20px 10px rgb(255, 255, 164);
+
+  animation: draai 60s linear infinite;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes draai {
+  to {
+    --angle: 360deg;
   }
 }
 
