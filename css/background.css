@@ -1,0 +1,146 @@
+/* ---------------------------------------------------------------------------------------- */
+/* -------------------------------------- Background -------------------------------------- */
+/* ---------------------------------------------------------------------------------------- */
+
+#bg-gradient-logo {
+  width: 200vw;
+  height: 200vh;
+  background-image: url("https://media-hosting.imagekit.io//9978d41543ca4d89/shard_logo.png?Expires=1837516906&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=LWThJiQ2gK7IG7GeS~XzFPJOB8djoGsI9RcdFMmC-HZ0I8apH0yppaJIfMaQydiCisqDFlxDb6--TZiXE8h4Wwoe3VEICL0uEB-l7nBliLbMqZHwwNKq6K8VGcWksRy1jhiJCBTPk69mkCSbUlS1tq~XwU6AgJK8K3UtswdK-KpgMlvxYrxw5Mcy2HunpOQmQbpwAMc~gL0ySZNauZl-LFAwrqDlHQc1lGgK5EoJ-OZWpdfuJnisUJ7CPcNfN6~-LGEjju6r2E0VOiUwnk2C-ejrZ8jCPMIUavM1gWV86X-Mu9RRQwVIzwHrKupSSJeAItG9US02h1I49F65RWs9uA__");
+  background-position: var(--bg_rails_position) var(--bg_y_rails_position);
+  /*   scale: 2; */
+  animation: --animate_bg_position 120000s infinite linear;
+  transform: rotateX(41deg) perspective(430px) rotateY(6deg) rotateX(15deg);
+  position: fixed;
+  top: -60%;
+  left: -30%;
+  z-index: -1;
+  filter: blur(3px);
+}
+
+#bg-logo {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: -2;
+  animation: --animate_bg_colors 8s infinite ease-in-out;
+  background-image: linear-gradient(
+      190deg,
+      rgba(0, 0, 80, 0.565) 0%,
+      #00000000 35%,
+      #00000000 65%,
+      rgba(0, 0, 80, 0.565) 100%
+    ),
+    linear-gradient(
+      25deg,
+      var(--color1_gradient) 33%,
+      var(--color2_gradient) 66%,
+      var(--color3_gradient) 100%
+    );
+}
+
+@property --bg_rails_position {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 0%;
+}
+
+@property --bg_y_rails_position {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 0%;
+}
+
+@property --color1_gradient {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: lime;
+}
+
+@property --color2_gradient {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: lime;
+}
+
+@property --color3_gradient {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: lime;
+}
+
+@keyframes --animate_bg_position {
+  from {
+    --bg_rails_position: 0%;
+    --bg_y_rails_position: 0%;
+  }
+  to {
+    --bg_rails_position: 100000%;
+    --bg_y_rails_position: 0%;
+  }
+}
+
+@keyframes --animate_bg_colors_blue {
+  0%,
+  100% {
+    --color1_gradient: hsl(210, 100%, 50%);
+    --color2_gradient: hsl(210, 100%, 70%);
+    --color3_gradient: hsl(210, 100%, 90%);
+    /* 		--bg_c1_position: 17; */
+  }
+  50% {
+    --color1_gradient: hsl(210, 100%, 70%);
+    --color2_gradient: hsl(210, 100%, 50%);
+    --color3_gradient: hsl(210, 100%, 90%);
+    /* 		--bg_c1_position: 37; */
+  }
+}
+
+@keyframes --animate_bg_colors_pink {
+  0%,
+  100% {
+    --color1_gradient: hsl(340, 100%, 40%);
+    --color2_gradient: hsl(340, 100%, 55%);
+    --color3_gradient: hsl(340, 100%, 85%);
+    /* 		--bg_c1_position: 17; */
+  }
+  50% {
+    --color1_gradient: hsl(340, 100%, 55%);
+    --color2_gradient: hsl(340, 100%, 40%);
+    --color3_gradient: hsl(340, 100%, 85%);
+    /* 		--bg_c1_position: 37; */
+  }
+}
+
+@keyframes --animate_bg_colors_green {
+  0%,
+  100% {
+    --color1_gradient: hsl(140, 100%, 30%);
+    --color2_gradient: hsl(140, 100%, 50%);
+    --color3_gradient: hsl(140, 100%, 60%);
+    /* 		--bg_c1_position: 17; */
+  }
+  50% {
+    --color1_gradient: hsl(140, 100%, 60%);
+    --color2_gradient: hsl(140, 100%, 30%);
+    --color3_gradient: hsl(140, 100%, 50%);
+    /* 		--bg_c1_position: 37; */
+  }
+}
+
+body:has(option[value="blue"]:checked) {
+  #bg-logo {
+    animation: --animate_bg_colors_blue 8s infinite ease-in-out;
+  }
+}
+
+body:has(option[value="pink"]:checked) {
+  #bg-logo {
+    animation: --animate_bg_colors_pink 8s infinite ease-in-out;
+  }
+}
+
+body:has(option[value="green"]:checked) {
+  #bg-logo {
+    animation: --animate_bg_colors_green 8s infinite ease-in-out;
+  }
+}
