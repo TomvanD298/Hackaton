@@ -180,7 +180,7 @@ html {
 body {
   width: 100vw;
   height: 100vh;
-  overflow-y: hidden;
+  overflow-y: scroll;
   overflow-x: hidden;
 }
 
@@ -323,11 +323,11 @@ ul > * {
 
 .character {
   width: 100vw;
-  height: 30vh;
+  height: 20vh;
   display: grid;
   align-content: center;
   justify-content: center;
-  transform: scale(0.4);
+  transform: scale(0.6);
 }
 
 .characterCard {
@@ -470,6 +470,9 @@ cirkel {
 /* ---------------------------------------------------------------------------------------- */
 
 @media (min-width: 600px) {
+  body {
+    overflow-y: hidden;
+  }
   #marioKart {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr;

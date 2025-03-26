@@ -26,12 +26,10 @@ playPauseButton.addEventListener('click', () => {
 
 setTimeout(() => {
     const inputs = document.querySelectorAll('input[type="radio"]');
-    console.log("Inputs found after delay:", inputs); // Should now show the radio buttons
     const hoverSound = document.getElementById('hoverSound');
   
     inputs.forEach(input => {
       input.addEventListener('click', () => {
-        console.log('Radio button clicked!');
         hoverSound.play();
       });
     });
