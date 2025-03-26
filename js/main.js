@@ -6,7 +6,6 @@ const playPauseButton = document.getElementById('playPauseButton');
 const audio = document.getElementById('audio');
 const icon = document.getElementById('icon');
 
-// Function to toggle play/pause
 playPauseButton.addEventListener('click', () => {
   if (audio.paused) {
     audio.play();
@@ -35,4 +34,23 @@ setTimeout(() => {
     });
   }, 500);
   
+///////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////          Mute Audio        //////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
 
+const muteButton = document.getElementById('muteButton');
+const muteIcon = document.getElementById('muteIcon');
+
+muteButton.addEventListener('click', () => {
+  audio.muted = !audio.muted;
+  hoverSound.muted = !hoverSound.muted;
+
+  // Toggle mute icon
+  if (audio.muted) {
+    muteIcon.classList.remove('fa-volume-up');
+    muteIcon.classList.add('fa-volume-mute');
+  } else {
+    muteIcon.classList.remove('fa-volume-mute');
+    muteIcon.classList.add('fa-volume-up');
+  }
+});
