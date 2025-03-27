@@ -30,9 +30,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   
     const themeMusic = {
-        blue: "../audio/Mario Kart Double Dash Theme.mp3",
-        pink: "../audio/Baby Park.mp3",
-        green: "../audio/Coconut Mall.mp3",
+        blue: "./audio/Mario Kart Double Dash Theme.mp3",
+        pink: "./audio/Baby Park.mp3",
+        green: "./audio/Coconut Mall.mp3",
     };
   
     themeSelect.addEventListener("change", (event) => {
