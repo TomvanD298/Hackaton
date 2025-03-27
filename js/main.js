@@ -23,16 +23,15 @@ document.addEventListener("DOMContentLoaded", function () {
     // Thema-wissel functionaliteit
     const themeSelect = document.getElementById("themeSelect");
     const audioSource = document.getElementById("audioSource");
-  
-    if (!themeSelect) {
-      console.error("themeSelect element not found!");
-      return;
-    }
+
+    const MKDDTheme = "./audio/Mario Kart Double Dash Theme.mp3";
+    const BabyPark = "./audio/Baby Park.mp3";   
+    const CoconutMall = "./audio/Coconut Mall.mp3";
   
     const themeMusic = {
-        blue: "./audio/Mario Kart Double Dash Theme.mp3",
-        pink: "./audio/Baby Park.mp3",
-        green: "./audio/Coconut Mall.mp3",
+        blue: MKDDTheme,
+        pink: BabyPark,
+        green: CoconutMall,
     };
   
     themeSelect.addEventListener("change", (event) => {
