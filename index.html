@@ -104,10 +104,16 @@
       </button>
     </div>
 
-    <audio id="audio" src="./audio/Mario Kart Double Dash Theme.mp3"></audio>
+    <audio id="audio" controls>
+      <source
+        id="audioSource"
+        src="./audio/Mario Kart Double Dash Theme.mp3"
+        type="audio/mp3"
+      />
+    </audio>
 
     <div id="rightButton">
-      <select>
+      <select id="themeSelect">
         <option value="blue">Blue theme</option>
         <option value="pink">Pink theme</option>
         <option value="green">Green theme</option>

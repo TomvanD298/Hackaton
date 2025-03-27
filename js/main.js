@@ -2,22 +2,52 @@
 /////////////////////////////         Music button        /////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 
-const playPauseButton = document.getElementById('playPauseButton');
-const audio = document.getElementById('audio');
-const icon = document.getElementById('icon');
-
-playPauseButton.addEventListener('click', () => {
-  if (audio.paused) {
-    audio.play();
-    icon.classList.remove('fa-play');
-    icon.classList.add('fa-pause');
-  } else {
-    audio.pause();
-    icon.classList.remove('fa-pause');
-    icon.classList.add('fa-play');
-  }
-});
-
+document.addEventListener("DOMContentLoaded", function () {
+    // Play/Pause functionaliteit
+    const playPauseButton = document.getElementById("playPauseButton");
+    const audio = document.getElementById("audio");
+    const icon = document.getElementById("icon");
+  
+    playPauseButton.addEventListener("click", () => {
+      if (audio.paused) {
+        audio.play();
+        icon.classList.remove("fa-play");
+        icon.classList.add("fa-pause");
+      } else {
+        audio.pause();
+        icon.classList.remove("fa-pause");
+        icon.classList.add("fa-play");
+      }
+    });
+  
+    // Thema-wissel functionaliteit
+    const themeSelect = document.getElementById("themeSelect");
+    const audioSource = document.getElementById("audioSource");
+  
+    if (!themeSelect) {
+      console.error("themeSelect element not found!");
+      return;
+    }
+  
+    const themeMusic = {
+        blue: "../audio/Mario Kart Double Dash Theme.mp3",
+        pink: "../audio/Baby Park.mp3",
+        green: "../audio/Coconut Mall.mp3",
+    };
+  
+    themeSelect.addEventListener("change", (event) => {
+      const selectedTheme = event.target.value;
+  
+      if (themeMusic[selectedTheme]) {
+        const wasPlaying = !audio.paused; 
+        audioSource.src = themeMusic[selectedTheme];
+        audio.load(); 
+        if (wasPlaying) {
+          audio.play(); 
+        }
+      }
+    });
+  });
 
 ///////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////          Hover Audio        /////////////////////////////
@@ -54,3 +84,7 @@ muteButton.addEventListener('click', () => {
     muteIcon.classList.add('fa-volume-up');
   }
 });
+
+
+
+
