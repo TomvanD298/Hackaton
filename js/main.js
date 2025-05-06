@@ -84,6 +84,18 @@ muteButton.addEventListener('click', () => {
   }
 });
 
+///////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////          Fullscreen        //////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
 
 
-
+ // Toggle fullscreen on Enter key
+ document.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+  }
+});
